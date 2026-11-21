@@ -3,244 +3,84 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#111110">
-
-  <title>INVISIBLE — Poemario de Pablo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#11110f">
   <meta name="description" content="INVISIBLE. Poemario personal de Pablo.">
+  <title>INVISIBLE. — Poemas de Pablo</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <script src="poems.js" defer></script>
+  <script src="main.js" defer></script>
 </head>
 
 <body>
-
-  <!-- PORTADA -->
-
-  <header class="hero" id="inicio">
-
-    <nav class="navigation">
-      <a href="#inicio" class="wordmark">INV.</a>
-      <span class="nav-label">POEMARIO PERSONAL</span>
-      <a href="#archivo" class="nav-link">ARCHIVO <span>↗</span></a>
-    </nav>
-
-    <div class="hero-content">
-
-      <p class="eyebrow">UNA COLECCIÓN DE ESCRITOS</p>
-
-      <h1>INVISIBLE<span class="period">.</span></h1>
-
-      <div class="hero-divider"></div>
-
-      <p class="hero-description">Poemas de Pablo.</p>
-
-      <a href="#dedicatoria" class="hero-cta">
-        EXPLORAR <span>↓</span>
-      </a>
-
-    </div>
-
-    <div class="hero-meta">
-      <span>EDICIÓN PERSONAL</span>
-      <span>01 / ∞</span>
-    </div>
-
+  <header class="topbar">
+    <a class="brand" href="#inicio">INV.</a>
+    <span class="topbar-label">POEMARIO PERSONAL</span>
+    <a class="topbar-link" href="#archivo">ARCHIVO <span>↗</span></a>
   </header>
 
-
   <main>
-
-    <!-- DEDICATORIA -->
-
-    <section class="dedication" id="dedicatoria">
-
-      <div class="dedication-inner">
-
-        <p class="eyebrow">01 — DEDICATORIA</p>
-
-        <h2>
-          A quienes<br>
-          <em>fueron.</em>
-        </h2>
-
-        <div class="dedication-line"></div>
-
-        <p class="dedication-note">
-          Por todo lo que dejaron.
-        </p>
-
+    <section class="hero" id="inicio">
+      <div class="hero-content">
+        <p class="eyebrow">UNA COLECCIÓN DE ESCRITOS</p>
+        <h1>INVISIBLE<span>.</span></h1>
+        <p class="hero-subtitle">Poemas de Pablo.</p>
+        <a class="explore-link" href="#archivo">EXPLORAR <span>↓</span></a>
       </div>
 
-      <span class="section-index">I.</span>
-
+      <div class="hero-index" aria-hidden="true">
+        <span>01</span>
+        <span>—</span>
+        <span>PALABRAS QUE PERMANECEN</span>
+      </div>
     </section>
 
-
-    <!-- ARCHIVO DE POEMAS -->
+    <section class="dedication">
+      <p class="eyebrow">DEDICATORIA</p>
+      <p class="dedication-text">
+        A quienes fueron.<br>
+        <span>Por todo lo que dejaron.</span>
+      </p>
+      <span class="dedication-mark" aria-hidden="true">✳</span>
+    </section>
 
     <section class="archive" id="archivo">
-
-      <div class="archive-header">
-
+      <div class="section-heading">
         <div>
-          <p class="eyebrow">02 — CONTENIDO</p>
-          <h2>El archivo<span>.</span></h2>
+          <p class="eyebrow">EL ARCHIVO</p>
+          <h2>Los escritos<span>.</span></h2>
         </div>
-
-        <div class="archive-counter">
-          <span id="poem-count">00</span>
-          <small>TEXTOS</small>
-        </div>
-
+        <p class="section-note">Una parte de lo que queda.</p>
       </div>
 
-
-      <div class="poem-list" id="poem-list"></div>
-
-      <div class="empty-state" id="empty-message" hidden>
-        No hay escritos disponibles.
+      <div class="poem-list" id="poem-list">
+        <p class="empty-message">Cargando escritos...</p>
       </div>
-
     </section>
-
   </main>
 
-
-  <!-- PIE -->
-
   <footer class="footer">
-
     <a href="#inicio" class="footer-brand">INVISIBLE.</a>
-
-    <span>UN POEMARIO DE PABLO</span>
-
-    <a href="#inicio" class="back-top">VOLVER ARRIBA ↑</a>
-
+    <span>EDICIÓN PERSONAL <span class="footer-divider">/</span> ∞</span>
+    <span class="footer-author">PABLO · TODOS LOS ESCRITOS</span>
   </footer>
 
-
-  <!-- DATOS DE LOS POEMAS -->
-
-  <script src="poems.js"></script>
-
-  <script>
-
-    const list = document.getElementById("poem-list");
-    const counter = document.getElementById("poem-count");
-    const empty = document.getElementById("empty-message");
-
-    const poems = Array.isArray(window.poemario)
-      ? window.poemario
-      : [];
-
-    counter.textContent = String(poems.length).padStart(2, "0");
-
-    empty.hidden = poems.length !== 0;
-
-
-    poems.forEach((poem, index) => {
-
-      const article = document.createElement("article");
-      article.className = "poem-item";
-
-      const number = document.createElement("span");
-      number.className = "poem-number";
-      number.textContent = String(index + 1).padStart(2, "0");
-
-      const info = document.createElement("div");
-      info.className = "poem-info";
-
-      const title = document.createElement("h3");
-      title.textContent = poem.title;
-
-      const date = document.createElement("p");
-      date.className = "poem-date";
-      date.textContent = poem.date || "";
-
-      const excerpt = document.createElement("p");
-      excerpt.className = "poem-excerpt";
-      excerpt.textContent = (poem.text || "").split("\n")[0];
-
-      info.append(title, date, excerpt);
-
-      const button = document.createElement("button");
-      button.className = "poem-open";
-      button.type = "button";
-      button.textContent = "LEER ↗";
-      button.setAttribute("aria-label", "Leer " + poem.title);
-
-      button.addEventListener("click", () => openPoem(poem));
-
-      article.append(number, info, button);
-      list.appendChild(article);
-
-    });
-
-
-    function openPoem(poem) {
-
-      const overlay = document.createElement("div");
-      overlay.className = "reader";
-
-      overlay.setAttribute("role", "dialog");
-      overlay.setAttribute("aria-modal", "true");
-      overlay.setAttribute("aria-label", poem.title);
-
-      const content = document.createElement("div");
-      content.className = "reader-content";
-
-      const close = document.createElement("button");
-      close.className = "reader-close";
-      close.type = "button";
-      close.textContent = "← VOLVER AL ARCHIVO";
-
-      const date = document.createElement("p");
-      date.className = "eyebrow reader-date";
-      date.textContent = poem.date || "";
-
-      const title = document.createElement("h2");
-      title.textContent = poem.title;
-
-      const body = document.createElement("p");
-      body.className = "reader-poem";
-      body.textContent = poem.text || "";
-
-      const signature = document.createElement("p");
-      signature.className = "reader-signature";
-      signature.textContent = "Pablo.";
-
-      content.append(close, date, title, body, signature);
-      overlay.appendChild(content);
-
-      document.body.appendChild(overlay);
-      document.body.classList.add("reading");
-
-      function dismiss() {
-        overlay.remove();
-        document.body.classList.remove("reading");
-        document.removeEventListener("keydown", onKey);
-      }
-
-      function onKey(event) {
-        if (event.key === "Escape") dismiss();
-      }
-
-      close.addEventListener("click", dismiss);
-
-      overlay.addEventListener("click", event => {
-        if (event.target === overlay) dismiss();
-      });
-
-      document.addEventListener("keydown", onKey);
-      close.focus();
-
-    }
-
-  </script>
-
+  <dialog class="poem-dialog" id="poem-dialog">
+    <div class="dialog-top">
+      <span class="eyebrow">INVISIBLE. / ARCHIVO</span>
+      <button class="close-dialog" id="close-dialog" aria-label="Cerrar poema">CERRAR <span>×</span></button>
+    </div>
+    <div class="dialog-content">
+      <p class="dialog-date" id="dialog-date"></p>
+      <h2 id="dialog-title"></h2>
+      <div class="dialog-poem" id="dialog-poem"></div>
+      <p class="dialog-signature">Pablo.</p>
+    </div>
+  </dialog>
 </body>
 </html>
