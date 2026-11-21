@@ -1,86 +1,44 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#11110f">
-  <meta name="description" content="INVISIBLE. Poemario personal de Pablo.">
-  <title>INVISIBLE. — Poemas de Pablo</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-  <script src="poems.js" defer></script>
-  <script src="main.js" defer></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Invisible</title>
+<meta name="description" content="Invisible. Poemario.">
+<meta name="theme-color" content="#0b0b0a">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=IBM+Plex+Mono:wght@300;400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-  <header class="topbar">
-    <a class="brand" href="#inicio">INV.</a>
-    <span class="topbar-label">POEMARIO PERSONAL</span>
-    <a class="topbar-link" href="#archivo">ARCHIVO <span>↗</span></a>
-  </header>
 
-  <main>
-    <section class="hero" id="inicio">
-      <div class="hero-content">
-        <p class="eyebrow">UNA COLECCIÓN DE ESCRITOS</p>
-        <h1>INVISIBLE<span>.</span></h1>
-        <p class="hero-subtitle">Poemas de Pablo.</p>
-        <a class="explore-link" href="#archivo">EXPLORAR <span>↓</span></a>
-      </div>
+<!-- PORTADA + ÍNDICE -->
+<main id="home">
+  <section class="cover wrap">
+    <div class="bar mono"><span>Poemario</span><span id="count"></span></div>
+    <h1 class="title">Invisible</h1>
+    <div class="foot mono"><span>Poemas y escritos</span><a href="#indice">Índice</a></div>
+  </section>
 
-      <div class="hero-index" aria-hidden="true">
-        <span>01</span>
-        <span>—</span>
-        <span>PALABRAS QUE PERMANECEN</span>
-      </div>
-    </section>
+  <section class="index wrap" id="indice">
+    <h2>Índice</h2>
+    <ol class="list" id="list"></ol>
+  </section>
 
-    <section class="dedication">
-      <p class="eyebrow">DEDICATORIA</p>
-      <p class="dedication-text">
-        A quienes fueron.<br>
-        <span>Por todo lo que dejaron.</span>
-      </p>
-      <span class="dedication-mark" aria-hidden="true">✳</span>
-    </section>
-
-    <section class="archive" id="archivo">
-      <div class="section-heading">
-        <div>
-          <p class="eyebrow">EL ARCHIVO</p>
-          <h2>Los escritos<span>.</span></h2>
-        </div>
-        <p class="section-note">Una parte de lo que queda.</p>
-      </div>
-
-      <div class="poem-list" id="poem-list">
-        <p class="empty-message">Cargando escritos...</p>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <a href="#inicio" class="footer-brand">INVISIBLE.</a>
-    <span>EDICIÓN PERSONAL <span class="footer-divider">/</span> ∞</span>
-    <span class="footer-author">PABLO · TODOS LOS ESCRITOS</span>
+  <footer class="wrap" style="padding-block:0 2rem">
+    <div class="bar mono" style="border-bottom:0;border-top:1px solid var(--line);padding:1rem 0 0"><span>Invisible</span><span id="year"></span></div>
   </footer>
+</main>
 
-  <dialog class="poem-dialog" id="poem-dialog">
-    <div class="dialog-top">
-      <span class="eyebrow">INVISIBLE. / ARCHIVO</span>
-      <button class="close-dialog" id="close-dialog" aria-label="Cerrar poema">CERRAR <span>×</span></button>
-    </div>
-    <div class="dialog-content">
-      <p class="dialog-date" id="dialog-date"></p>
-      <h2 id="dialog-title"></h2>
-      <div class="dialog-poem" id="dialog-poem"></div>
-      <p class="dialog-signature">Pablo.</p>
-    </div>
-  </dialog>
+<!-- LECTURA -->
+<main id="reader" class="read wrap" hidden>
+  <div class="bar mono"><a href="#indice" id="back">Índice</a><span id="pos"></span></div>
+  <article class="piece" id="piece"></article>
+  <nav class="pager mono" id="pager" aria-label="Navegación entre textos"></nav>
+</main>
+
+<script src="poemas.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
