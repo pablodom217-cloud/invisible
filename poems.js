@@ -1,7 +1,3 @@
-// Añade tus poemas dentro de los corchetes.
-// Separa cada poema con una coma.
-// Respeta los saltos de línea dentro de las comillas invertidas.
-
 window.poemario = [
   {
     title: "Habitación vacía",
@@ -13,5 +9,27 @@ En la mesa,
 el polvo ocupa tu sitio.
 
 No he movido nada.`
+  },
+  {
+    title: "Lo que no dije",
+    date: "21 · 11 · 2026",
+    text: `Me guardé tantas palabras
+que terminé por no reconocer
+mi propia voz.
+
+Ahora todo lo que callé
+tiene tu nombre.`
+  },
+  {
+    title: "Invisible",
+    date: "21 · 11 · 2026",
+    text: `Aprendí a estar presente
+sin que nadie me viera.
+
+A sonreír en las fotografías,
+a responder que estaba bien.
+
+Y mientras todos miraban,
+yo desaparecía.`
   }
 ];
