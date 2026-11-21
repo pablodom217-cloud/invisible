@@ -1,121 +1,202 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#10100f">
-  <meta name="description" content="Donde habitan las palabras. Poemas de Pablo.">
-  <title>Donde habitan las palabras — Pablo</title>
+  <meta name="theme-color" content="#111110">
+
+  <title>INVISIBLE — Poemario de Pablo</title>
+  <meta name="description" content="INVISIBLE. Poemario personal de Pablo.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
+
+  <!-- PORTADA -->
+
   <header class="hero" id="inicio">
-    <nav class="topbar">
-      <a class="monogram" href="#inicio">D.H.L.P.</a>
-      <span class="top-label">POEMARIO PERSONAL</span>
+
+    <nav class="navigation">
+      <a href="#inicio" class="wordmark">INV.</a>
+      <span class="nav-label">POEMARIO PERSONAL</span>
+      <a href="#archivo" class="nav-link">ARCHIVO <span>↗</span></a>
     </nav>
 
-    <div class="hero-main">
-      <p class="eyebrow">PABLO · ESCRITOS</p>
-      <h1>Donde habitan<br><em>las palabras</em></h1>
-      <div class="rule"></div>
-      <p class="hero-note">Un archivo de poemas.</p>
-      <a class="enter-link" href="#poemas">VER POEMAS <span aria-hidden="true">↓</span></a>
+    <div class="hero-content">
+
+      <p class="eyebrow">UNA COLECCIÓN DE ESCRITOS</p>
+
+      <h1>INVISIBLE<span class="period">.</span></h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-description">Poemas de Pablo.</p>
+
+      <a href="#dedicatoria" class="hero-cta">
+        EXPLORAR <span>↓</span>
+      </a>
+
     </div>
 
-    <div class="hero-bottom">
-      <span>ARCHIVO PERSONAL</span>
-      <span>001 — ∞</span>
+    <div class="hero-meta">
+      <span>EDICIÓN PERSONAL</span>
+      <span>01 / ∞</span>
     </div>
+
   </header>
 
-  <main>
-    <section class="dedication" aria-labelledby="dedication-title">
-      <p class="eyebrow">DEDICATORIA</p>
-      <h2 id="dedication-title">A quienes<br><em>ya no están.</em></h2>
-      <p class="dedication-text">
-        Y a todo lo que, de una forma u otra,<br class="desktop-only">
-        dejaron atrás.
-      </p>
-    </section>
 
-    <section class="poems" id="poemas">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">ÍNDICE</p>
-          <h2>Poemas</h2>
-        </div>
-        <span class="count" id="poem-count">00</span>
+  <main>
+
+    <!-- DEDICATORIA -->
+
+    <section class="dedication" id="dedicatoria">
+
+      <div class="dedication-inner">
+
+        <p class="eyebrow">01 — DEDICATORIA</p>
+
+        <h2>
+          A quienes<br>
+          <em>fueron.</em>
+        </h2>
+
+        <div class="dedication-line"></div>
+
+        <p class="dedication-note">
+          Por todo lo que dejaron.
+        </p>
+
       </div>
 
-      <div class="poem-list" id="poem-list"></div>
-      <p class="empty" id="empty-message" hidden>El archivo está vacío.</p>
+      <span class="section-index">I.</span>
+
     </section>
+
+
+    <!-- ARCHIVO DE POEMAS -->
+
+    <section class="archive" id="archivo">
+
+      <div class="archive-header">
+
+        <div>
+          <p class="eyebrow">02 — CONTENIDO</p>
+          <h2>El archivo<span>.</span></h2>
+        </div>
+
+        <div class="archive-counter">
+          <span id="poem-count">00</span>
+          <small>TEXTOS</small>
+        </div>
+
+      </div>
+
+
+      <div class="poem-list" id="poem-list"></div>
+
+      <div class="empty-state" id="empty-message" hidden>
+        No hay escritos disponibles.
+      </div>
+
+    </section>
+
   </main>
 
-  <footer>
-    <a href="#inicio">DONDE HABITAN LAS PALABRAS</a>
-    <span>© PABLO</span>
+
+  <!-- PIE -->
+
+  <footer class="footer">
+
+    <a href="#inicio" class="footer-brand">INVISIBLE.</a>
+
+    <span>UN POEMARIO DE PABLO</span>
+
+    <a href="#inicio" class="back-top">VOLVER ARRIBA ↑</a>
+
   </footer>
 
-  <script src="poems.js"></script>
-  <script>
-    const list = document.getElementById("poem-list");
-    const count = document.getElementById("poem-count");
-    const empty = document.getElementById("empty-message");
-    const poems = Array.isArray(window.poemario) ? window.poemario : [];
 
-    count.textContent = String(poems.length).padStart(2, "0");
-    empty.hidden = poems.length > 0;
+  <!-- DATOS DE LOS POEMAS -->
+
+  <script src="poems.js"></script>
+
+  <script>
+
+    const list = document.getElementById("poem-list");
+    const counter = document.getElementById("poem-count");
+    const empty = document.getElementById("empty-message");
+
+    const poems = Array.isArray(window.poemario)
+      ? window.poemario
+      : [];
+
+    counter.textContent = String(poems.length).padStart(2, "0");
+
+    empty.hidden = poems.length !== 0;
+
 
     poems.forEach((poem, index) => {
+
       const article = document.createElement("article");
-      article.className = "poem-row";
+      article.className = "poem-item";
 
       const number = document.createElement("span");
-      number.className = "number";
+      number.className = "poem-number";
       number.textContent = String(index + 1).padStart(2, "0");
 
-      const details = document.createElement("div");
-      details.className = "poem-details";
+      const info = document.createElement("div");
+      info.className = "poem-info";
 
       const title = document.createElement("h3");
       title.textContent = poem.title;
 
       const date = document.createElement("p");
-      date.className = "date";
+      date.className = "poem-date";
       date.textContent = poem.date || "";
 
       const excerpt = document.createElement("p");
-      excerpt.className = "excerpt";
-      excerpt.textContent = (poem.text || "").split("\\n")[0];
+      excerpt.className = "poem-excerpt";
+      excerpt.textContent = (poem.text || "").split("\n")[0];
 
-      const open = document.createElement("button");
-      open.className = "open-poem";
-      open.type = "button";
-      open.textContent = "LEER";
-      open.setAttribute("aria-label", "Leer " + poem.title);
-      open.addEventListener("click", () => showPoem(poem));
+      info.append(title, date, excerpt);
 
-      details.append(title, date, excerpt);
-      article.append(number, details, open);
+      const button = document.createElement("button");
+      button.className = "poem-open";
+      button.type = "button";
+      button.textContent = "LEER ↗";
+      button.setAttribute("aria-label", "Leer " + poem.title);
+
+      button.addEventListener("click", () => openPoem(poem));
+
+      article.append(number, info, button);
       list.appendChild(article);
+
     });
 
-    function showPoem(poem) {
+
+    function openPoem(poem) {
+
       const overlay = document.createElement("div");
       overlay.className = "reader";
+
       overlay.setAttribute("role", "dialog");
       overlay.setAttribute("aria-modal", "true");
       overlay.setAttribute("aria-label", poem.title);
 
-      const panel = document.createElement("article");
-      panel.className = "reader-panel";
+      const content = document.createElement("div");
+      content.className = "reader-content";
 
       const close = document.createElement("button");
-      close.className = "close-reader";
+      close.className = "reader-close";
       close.type = "button";
-      close.textContent = "← VOLVER AL ÍNDICE";
+      close.textContent = "← VOLVER AL ARCHIVO";
 
       const date = document.createElement("p");
       date.className = "eyebrow reader-date";
@@ -125,15 +206,16 @@
       title.textContent = poem.title;
 
       const body = document.createElement("p");
-      body.className = "poem-body";
+      body.className = "reader-poem";
       body.textContent = poem.text || "";
 
       const signature = document.createElement("p");
       signature.className = "reader-signature";
-      signature.textContent = "P.";
+      signature.textContent = "Pablo.";
 
-      panel.append(close, date, title, body, signature);
-      overlay.appendChild(panel);
+      content.append(close, date, title, body, signature);
+      overlay.appendChild(content);
+
       document.body.appendChild(overlay);
       document.body.classList.add("reading");
 
@@ -142,17 +224,23 @@
         document.body.classList.remove("reading");
         document.removeEventListener("keydown", onKey);
       }
+
       function onKey(event) {
         if (event.key === "Escape") dismiss();
       }
 
       close.addEventListener("click", dismiss);
+
       overlay.addEventListener("click", event => {
         if (event.target === overlay) dismiss();
       });
+
       document.addEventListener("keydown", onKey);
       close.focus();
+
     }
+
   </script>
+
 </body>
 </html>
